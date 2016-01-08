@@ -19,6 +19,15 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # VirtualenvWrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# source /usr/bin/virtualenvwrapper.sh
+
+# SSH agent
+SSHAGENT=/usr/bin/ssh-agent
+SSHAGENTARGS="-s"
+if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
+    eval `$SSHAGENT $SSHAGENTARGS`
+        trap "kill $SSH_AGENT_PID" 0
+    fi
+
