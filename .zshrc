@@ -14,6 +14,13 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Fix colors
+autoload colors
+colors
+
+# Fix for prompt
+PS1=$'%{\e]0;%d\a%}\n%F{green}%n@%m %F{yellow}%d%f\n%# '
+
 # Set vim as standard editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
