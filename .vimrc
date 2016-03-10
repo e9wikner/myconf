@@ -98,7 +98,7 @@ syntax on
 set number  " show line numbers
 set tw=90   " width of document (used by gd)
 "" set nowrap  " don't automatically wrap on load
-"" set fo-=t   " don't automatically wrap text when typing
+set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=90
 "" highlight ColorColumn ctermbg=233
 
