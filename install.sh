@@ -12,5 +12,5 @@ curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 # fish
 mkdir -p $HOME/.config/fish
-ln -sr .config/fish/fish.config $HOME/.config/fish/fish.config 
+ln -sr .config/fish/config.fish $HOME/.config/fish/config.fish 
 echo "Login/logout or source ~/.config/fish/config.fish"
