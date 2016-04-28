@@ -10,3 +10,7 @@ ln -sr .vimrc $HOME/.vimrc
 mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
 curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
+# fish
+mkdir -p $HOME/.config/fish
+ln -sr .config/fish/fish.config $HOME/.config/fish/fish.config 
+echo "Login/logout or source ~/.config/fish/config.fish"
