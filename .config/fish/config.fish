@@ -1,18 +1,14 @@
-set arken_ip ~/Sync/arken_ip.txt                                                
-                                                                                
-if [ -f $arken_ip ]                                                             
-    set -x ARKEN (cat $arken_ip)                                                
-end 
+set arken_ip ~/Sync/arken_ip.txt
+
+if [ -f $arken_ip ]
+    set -x ARKEN (cat $arken_ip)
+end
 
 # Set vim as standard editor
 set -x VISUAL vim
 set -x EDITOR "$VISUAL"
 
-# SSH agent
-set SSHAGENT /usr/bin/ssh-agent
-set SSHAGENTARGS "-s"
-if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]
-    eval $SSHAGENT $SSHAGENTARGS
-    trap "kill $SSH_AGENT_PID" 0
-end
+#set -gx WORKON_HOME $HOME/.virtual-environments/
+# . ~/.config/fish/workon_funcs.fish
 
+fish_vi_key_bindings
