@@ -64,7 +64,7 @@ map <Leader>m :tabnext<CR>
 
 
 " map sort function to a key
-"" vnoremap <Leader>s :sort<CR>
+vnoremap <Leader>s :sort<CR>
 
 
 " easier moving of code blocks
@@ -96,10 +96,10 @@ syntax on
 
 " Showing line numbers and length
 set number  " show line numbers
-set tw=120   " width of document (used by gd)
+set tw=90 " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=120
+set colorcolumn=90
 "" highlight ColorColumn ctermbg=233
 
 
@@ -108,7 +108,7 @@ set colorcolumn=120
 "" nmap Q gqap
 
 " Search and replace
-map <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+map <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Useful settings
 set history=700
