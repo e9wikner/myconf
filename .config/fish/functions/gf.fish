@@ -1,3 +1,3 @@
-function gf
-	git fetch $argv
+function gr
+	git rebase $argv
 end
