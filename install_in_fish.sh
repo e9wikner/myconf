@@ -2,6 +2,8 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+bash $DIR/install.sh
+
 # fish
 mkdir -p $HOME/.config/fish
 ln -si $DIR/.config/fish/config.fish $HOME/.config/fish/config.fish 

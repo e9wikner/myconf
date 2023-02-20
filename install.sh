@@ -2,8 +2,8 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# ZSH
-# ln -si $DIR/.zshrc $HOME/.zshrc
+# NeoVim
+ln -si $DIR/.config/nvim/init.vim $HOME/.config/nvim/init.vim
 
 # VIM
 ln -si $DIR/.vimrc $HOME/.vimrc
