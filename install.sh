@@ -4,6 +4,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # NeoVim
 ln -si $DIR/.config/nvim/init.vim $HOME/.config/nvim/init.vim
+## plug.vim plugin handler
+curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # VIM
 ln -si $DIR/.vimrc $HOME/.vimrc
