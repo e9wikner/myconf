@@ -6,8 +6,13 @@ source ~/.vimrc
 " :PlugInstall to install plugins
 call plug#begin(stdpath('data') . '/plugged')
 
+" telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+
+" yaml, :TSInstall yaml to install e.g. yaml support
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'cuducos/yaml.nvim'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -18,6 +23,7 @@ call plug#end()
 
 " Telescope config
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
