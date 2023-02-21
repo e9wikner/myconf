@@ -61,7 +61,7 @@ map <c-h> <c-w>h
 " easier moving between tabs
 map <Leader>n :tabprevious<CR>
 map <Leader>m :tabnext<CR>
-
+map <Leader>t :tabnew
 
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
@@ -96,11 +96,12 @@ syntax on
 
 " Showing line numbers and length
 set number  " show line numbers
-set tw=90 " width of document (used by gd)
+set tw=120 " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=90
-"" highlight ColorColumn ctermbg=233
+set colorcolumn=120
+highlight ColorColumn ctermbg=255
+set relativenumber
 
 
 " easier formatting of paragraphs
