@@ -1,0 +1,5 @@
+--no-ignore
+--hidden
+--glob=!**.dir
+--glob=!**_CPack_*
+--glob=!.git

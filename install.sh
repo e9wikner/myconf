@@ -14,4 +14,7 @@ ln -si $DIR/.vimrc $HOME/.vimrc
 mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
 curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
+# RipGrep
+ln -si $DIR/.rgrx $HOME/.rgrc
+
 echo "Login/logout to finalize installation"
