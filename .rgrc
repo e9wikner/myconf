@@ -3,3 +3,5 @@
 --glob=!**.dir
 --glob=!**_CPack_*
 --glob=!.git
+--glob=!*.map
+--glob=!*.logs/**
