@@ -13,3 +13,5 @@ normal = { family = "CaskaydiaCove Nerd Font Propo", style = "Regular" }
 bold = { family = "CaskaydiaCove Nerd Font Propo", style = "Bold" }
 italic = { family = "CaskaydiaCove Nerd Font Propo", style = "Italic" }
 
+[cursor]
+style = { shape = "Underline", blinking = "Off" }
