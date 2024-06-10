@@ -2,6 +2,10 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Terminal
+ln -si $DIR/.config/alacritty $HOME/.config/alacritty
+ln -si $DIR/.tmux.conf $HOME/.tmux.conf
+
 # NeoVim
 ln -si $DIR/.config/nvim/init.vim $HOME/.config/nvim/init.vim
 ## plug.vim plugin handler
