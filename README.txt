@@ -18,3 +18,7 @@ sudo apt-get install neovim ripgrep
 - In Powershell as admin:
 
     New-Item -ItemType SymbolicLink -Path .config\alacritty -Value .\dev\myconf\alacritty
+
+# Alacritty
+
+To find more themes: https://github.com/alacritty/alacritty-theme
