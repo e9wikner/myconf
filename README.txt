@@ -1,12 +1,14 @@
 Run install_in_[your_shell].sh from this dir
 
+Some tools: https://www.josean.com/posts/7-amazing-cli-tools
+
 # On mac
 
-brew install neovim ripgrep
+brew install neovim ripgrep fzf tmux
 
 # On Ubuntu
 
-sudo apt-get install neovim ripgrep
+sudo apt-get install neovim ripgrep fzf
 
 # Windows:
 
