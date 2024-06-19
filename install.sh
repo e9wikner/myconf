@@ -2,23 +2,37 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Terminal
+sudo apt install \
+    alacritty \
+    fish \
+    fzf \
+    git \
+    ripgrep \
+    tmux \
+
 ln -si $DIR/.config/alacritty $HOME/.config/alacritty
 ln -si $DIR/.tmux.conf $HOME/.tmux.conf
+ln -si $DIR/.rgrc $HOME/.rgrc
 
-# NeoVim
-ln -si $DIR/.config/nvim/init.vim $HOME/.config/nvim/init.vim
-## plug.vim plugin handler
-curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# fish
+mkdir -p $HOME/.config/fish
+ln -si $DIR/.config/fish/config.fish $HOME/.config/fish/config.fish 
+ln -si $DIR/.config/fish/functions $HOME/.config/fish/functions
 
-# VIM
-ln -si $DIR/.vimrc $HOME/.vimrc
-# pathogen, https://github.com/tpope/vim-pathogen
-mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
-curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+# AstroNvim
+mv ~/.config/nvim ~/.config/nvim.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
+git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
+rm -rf ~/.config/nvim/.git
 
-# RipGrep
-ln -si $DIR/.rgrx $HOME/.rgrc
+git clone git@github.com:e9wikner/astronvim-config.git ~/.config/nvim
 
-echo "Login/logout to finalize installation"
+# lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+lazygit --version
+

@@ -8,7 +8,7 @@ brew install neovim ripgrep fzf tmux
 
 # On Ubuntu
 
-sudo apt-get install neovim ripgrep fzf
+sudo apt-get install neovim ripgrep fzf alacritty tmux
 
 # Windows:
 
