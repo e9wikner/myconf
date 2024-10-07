@@ -24,3 +24,8 @@ sudo apt-get install neovim ripgrep fzf alacritty tmux
 # Alacritty
 
 To find more themes: https://github.com/alacritty/alacritty-theme
+
+# Copilot:
+
+https://github.com/github/copilot.vim
+
