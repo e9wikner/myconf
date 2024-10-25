@@ -3,7 +3,6 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 sudo apt install \
-    alacritty \
     fish \
     fzf \
     git \
