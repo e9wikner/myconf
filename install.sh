@@ -23,9 +23,7 @@ mv ~/.config/nvim ~/.config/nvim.bak
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
 mv ~/.local/state/nvim ~/.local/state/nvim.bak
 mv ~/.cache/nvim ~/.cache/nvim.bak
-git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
-rm -rf ~/.config/nvim/.git
-
+# git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
 git clone git@github.com:e9wikner/astronvim-config.git ~/.config/nvim
 
 # lazygit
@@ -35,3 +33,8 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 lazygit --version
 
+# Copilot
+cd ~
+curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
+sudo bash nodesource_setup.sh
+sudo apt install nodejs
