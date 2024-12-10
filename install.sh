@@ -15,7 +15,7 @@ ln -si $DIR/.rgrc $HOME/.rgrc
 
 # fish
 mkdir -p $HOME/.config/fish
-ln -si $DIR/.config/fish/config.fish $HOME/.config/fish/config.fish 
+ln -si $DIR/.config/fish/config.fish $HOME/.config/fish/conf.d/myconf.fish 
 ln -si $DIR/.config/fish/functions $HOME/.config/fish/functions
 
 # AstroNvim
