@@ -1,6 +1,12 @@
 #!/usr/bin/env zsh
 set -euo pipefail
 
+# ── Options ───────────────────────────────────────────────
+DRY_RUN=false
+if [[ "${1:-}" == "--dry-run" || "${1:-}" == "-n" ]]; then
+    DRY_RUN=true
+fi
+
 # ── Constants ──────────────────────────────────────────────
 MYCONF_DIR="${0:A:h}"
 BACKUP_DIR="$HOME/.myconf_backup/$(date +%Y%m%d_%H%M%S)"
@@ -12,6 +18,16 @@ info()    { print -P "%F{blue}[INFO]%f $1" }
 warn()    { print -P "%F{yellow}[WARN]%f $1" }
 error()   { print -P "%F{red}[ERROR]%f $1" }
 success() { print -P "%F{green}[OK]%f $1" }
+dry()     { print -P "%F{cyan}[DRY-RUN]%f $*" }
+
+# Run a command, or print it in dry-run mode
+run() {
+    if $DRY_RUN; then
+        dry "$*"
+    else
+        "$@"
+    fi
+}
 
 backup_and_link() {
     local src="$1" dst="$2"
@@ -21,14 +37,18 @@ backup_and_link() {
             success "Already linked: $dst"
             return 0
         fi
-        mkdir -p "$BACKUP_DIR"
-        mv "$dst" "$BACKUP_DIR/$(basename "$dst")"
-        warn "Backed up: $dst -> $BACKUP_DIR/"
+        run mkdir -p "$BACKUP_DIR"
+        run mv "$dst" "$BACKUP_DIR/$(basename "$dst")"
+        if ! $DRY_RUN; then
+            warn "Backed up: $dst -> $BACKUP_DIR/"
+        fi
     fi
 
-    mkdir -p "$(dirname "$dst")"
-    ln -s "$src" "$dst"
-    success "Linked: $dst -> $src"
+    run mkdir -p "$(dirname "$dst")"
+    run ln -s "$src" "$dst"
+    if ! $DRY_RUN; then
+        success "Linked: $dst -> $src"
+    fi
 }
 
 # ── OS Check ───────────────────────────────────────────────
@@ -46,7 +66,11 @@ if ! command -v brew &>/dev/null; then
     exit 1
 fi
 
-info "myconf macOS installer"
+if $DRY_RUN; then
+    info "myconf macOS installer (dry run)"
+else
+    info "myconf macOS installer"
+fi
 info "Repository: $MYCONF_DIR"
 echo ""
 
@@ -59,8 +83,7 @@ for pkg in "${packages[@]}"; do
     if brew list "$pkg" &>/dev/null; then
         success "Already installed: $pkg"
     else
-        info "Installing: $pkg"
-        brew install "$pkg"
+        run brew install "$pkg"
     fi
 done
 
@@ -69,8 +92,7 @@ for cask in "${casks[@]}"; do
     if brew list --cask "$cask" &>/dev/null 2>&1; then
         success "Already installed: $cask (cask)"
     else
-        info "Installing: $cask"
-        brew install --cask "$cask"
+        run brew install --cask "$cask"
     fi
 done
 
@@ -97,15 +119,18 @@ else
     # Back up existing nvim directories
     for nvim_dir in "$XDG_CONFIG_HOME/nvim" "$HOME/.local/share/nvim" "$HOME/.local/state/nvim" "$HOME/.cache/nvim"; do
         if [[ -e "$nvim_dir" ]]; then
-            mkdir -p "$BACKUP_DIR"
-            mv "$nvim_dir" "$BACKUP_DIR/$(basename "$nvim_dir")"
-            warn "Backed up: $nvim_dir"
+            run mkdir -p "$BACKUP_DIR"
+            run mv "$nvim_dir" "$BACKUP_DIR/$(basename "$nvim_dir")"
+            if ! $DRY_RUN; then
+                warn "Backed up: $nvim_dir"
+            fi
         fi
     done
 
-    info "Cloning astronvim-config..."
-    git clone git@github.com:e9wikner/astronvim-config.git "$XDG_CONFIG_HOME/nvim"
-    success "Neovim config cloned"
+    run git clone git@github.com:e9wikner/astronvim-config.git "$XDG_CONFIG_HOME/nvim"
+    if ! $DRY_RUN; then
+        success "Neovim config cloned"
+    fi
 fi
 
 echo ""
@@ -123,8 +148,12 @@ echo ""
 
 # ── Done ──────────────────────────────────────────────────
 
-success "Installation complete!"
-if [[ -d "$BACKUP_DIR" ]]; then
-    warn "Backups saved to: $BACKUP_DIR"
+if $DRY_RUN; then
+    success "Dry run complete. No changes were made."
+else
+    success "Installation complete!"
+    if [[ -d "$BACKUP_DIR" ]]; then
+        warn "Backups saved to: $BACKUP_DIR"
+    fi
+    info "Restart your shell or run: source ~/.zshrc"
 fi
-info "Restart your shell or run: source ~/.zshrc"
