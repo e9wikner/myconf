@@ -31,6 +31,7 @@ run() {
 
 backup_and_link() {
     local src="$1" dst="$2"
+    local dst_dir="$(dirname "$dst")"
 
     if [[ -e "$dst" || -L "$dst" ]]; then
         if [[ "$(readlink "$dst" 2>/dev/null)" == "$src" ]]; then
@@ -39,16 +40,12 @@ backup_and_link() {
         fi
         run mkdir -p "$BACKUP_DIR"
         run mv "$dst" "$BACKUP_DIR/$(basename "$dst")"
-        if ! $DRY_RUN; then
-            warn "Backed up: $dst -> $BACKUP_DIR/"
-        fi
+        $DRY_RUN || warn "Backed up: $dst -> $BACKUP_DIR/"
     fi
 
-    run mkdir -p "$(dirname "$dst")"
+    [[ -d "$dst_dir" ]] || run mkdir -p "$dst_dir"
     run ln -s "$src" "$dst"
-    if ! $DRY_RUN; then
-        success "Linked: $dst -> $src"
-    fi
+    $DRY_RUN || success "Linked: $dst -> $src"
 }
 
 # ── OS Check ───────────────────────────────────────────────
@@ -121,16 +118,12 @@ else
         if [[ -e "$nvim_dir" ]]; then
             run mkdir -p "$BACKUP_DIR"
             run mv "$nvim_dir" "$BACKUP_DIR/$(basename "$nvim_dir")"
-            if ! $DRY_RUN; then
-                warn "Backed up: $nvim_dir"
-            fi
+            $DRY_RUN || warn "Backed up: $nvim_dir"
         fi
     done
 
     run git clone git@github.com:e9wikner/astronvim-config.git "$XDG_CONFIG_HOME/nvim"
-    if ! $DRY_RUN; then
-        success "Neovim config cloned"
-    fi
+    $DRY_RUN || success "Neovim config cloned"
 fi
 
 echo ""
