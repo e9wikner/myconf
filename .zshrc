@@ -1,40 +1,14 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory extendedglob
-bindkey -v
-bindkey '^R' history-incremental-pattern-search-backward
+# myconf zsh configuration
+# Resolve the directory this .zshrc lives in (follows symlinks)
+MYCONF_ZSH="${${(%):-%x}:A:h}/.config/zsh"
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/e9wikner/.zshrc'
+source "$MYCONF_ZSH/environment.zsh"
+source "$MYCONF_ZSH/history.zsh"
+source "$MYCONF_ZSH/completion.zsh"
+source "$MYCONF_ZSH/keybindings.zsh"
+source "$MYCONF_ZSH/prompt.zsh"
+source "$MYCONF_ZSH/aliases.zsh"
+[[ "$OSTYPE" == darwin* ]] && source "$MYCONF_ZSH/macos.zsh"
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-# Fix colors
-autoload colors
-colors
-
-# Fix for prompt
-PS1=$'%{\e]0;%d\a%}\n%F{green}%n@%m %F{yellow}%d%f\n%# '
-
-# Set vim as standard editor
-export VISUAL=vim
-export EDITOR="$VISUAL"
-
-# VirtualenvWrapper
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# source /usr/bin/virtualenvwrapper.sh
-
-# SSH agent
-SSHAGENT=/usr/bin/ssh-agent
-SSHAGENTARGS="-s"
-if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
-    eval `$SSHAGENT $SSHAGENTARGS`
-        trap "kill $SSH_AGENT_PID" 0
-    fi
-
+# Machine-specific overrides (not tracked in git)
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

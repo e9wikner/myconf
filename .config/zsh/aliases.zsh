@@ -1,0 +1,21 @@
+# Git aliases (ported from fish functions)
+alias ga='git add'
+alias gb='git branch'
+alias gc='git commit'
+alias gd='git diff'
+alias gf='git fetch'
+alias gg='lazygit'
+alias gl='git log'
+alias glg='git log --graph --oneline'
+alias gp='git pull'
+alias gr='git rebase'
+alias gri='git rebase -i'
+alias grc='git rebase --continue'
+alias gra='git rebase --abort'
+alias gs='git status'
+
+# General
+alias vim='nvim'
+alias vi='nvim'
+alias ll='ls -lah'
+alias la='ls -A'
