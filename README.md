@@ -23,7 +23,7 @@ neovim, ripgrep, fzf, tmux, lazygit, node
 The following need to be installed manually:
 
 - **Alacritty** — download from [GitHub releases](https://github.com/alacritty/alacritty/releases) or `cargo install alacritty`
-- **CodeNewRoman Nerd Font** — download from [nerdfonts.com](https://www.nerdfonts.com/font-downloads), unzip, and open the `.ttf` files to install via Font Book
+- **CascadiaCode Nerd Font** — installed automatically by the script from [GitHub releases](https://github.com/ryanoasis/nerd-fonts/releases)
 
 ### Symlinks
 

@@ -86,6 +86,22 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
+# ── Fonts ─────────────────────────────────────────────────
+
+info "Installing fonts..."
+
+FONT_DIR="$HOME/Library/Fonts"
+FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CascadiaCode.zip"
+
+if [[ -n ${FONT_DIR}/CaskaydiaCove*.ttf(#qN) ]]; then
+    success "Already installed: CascadiaCode Nerd Font"
+else
+    run curl -fsSL -o /tmp/CascadiaCode.zip "$FONT_URL"
+    run unzip -o -j /tmp/CascadiaCode.zip "*.ttf" -d "$FONT_DIR"
+    run rm -f /tmp/CascadiaCode.zip
+    $DRY_RUN || success "Installed: CascadiaCode Nerd Font"
+fi
+
 echo ""
 
 # ── Symlinks ──────────────────────────────────────────────
