@@ -8,10 +8,11 @@ fi
 autoload -Uz compinit
 
 # Regenerate .zcompdump at most once per day
+# -u: silently ignore insecure directories (common with Homebrew)
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-    compinit
+    compinit -u
 else
-    compinit -C
+    compinit -C -u
 fi
 
 # Case-insensitive matching
