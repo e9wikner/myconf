@@ -16,7 +16,9 @@ Requires [Homebrew](https://brew.sh). The script will check for it and print ins
 
 ### Packages (via Homebrew)
 
-neovim, ripgrep, fzf, tmux, lazygit, node, alacritty, CodeNewRoman Nerd Font
+neovim, ripgrep, fzf, tmux, lazygit, node, CodeNewRoman Nerd Font
+
+Alacritty is not installed by the script — install it manually (e.g. download from [GitHub releases](https://github.com/alacritty/alacritty/releases) or `cargo install alacritty`). The config is still symlinked.
 
 ### Symlinks
 

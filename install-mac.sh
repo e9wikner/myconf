@@ -86,7 +86,7 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
-casks=(alacritty font-code-new-roman-nerd-font)
+casks=(font-code-new-roman-nerd-font)
 for cask in "${casks[@]}"; do
     if [[ -d "$BREW_PREFIX/Caskroom/$cask" ]]; then
         success "Already installed: $cask (cask)"
