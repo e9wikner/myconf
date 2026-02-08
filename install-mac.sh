@@ -63,6 +63,8 @@ if ! command -v brew &>/dev/null; then
     exit 1
 fi
 
+BREW_PREFIX="$(brew --prefix)"
+
 if $DRY_RUN; then
     info "myconf macOS installer (dry run)"
 else
@@ -77,7 +79,7 @@ info "Installing packages..."
 
 packages=(neovim ripgrep fzf tmux lazygit node)
 for pkg in "${packages[@]}"; do
-    if brew list "$pkg" &>/dev/null; then
+    if [[ -d "$BREW_PREFIX/Cellar/$pkg" ]]; then
         success "Already installed: $pkg"
     else
         run brew install "$pkg"
@@ -86,7 +88,7 @@ done
 
 casks=(alacritty font-code-new-roman-nerd-font)
 for cask in "${casks[@]}"; do
-    if brew list --cask "$cask" &>/dev/null 2>&1; then
+    if [[ -d "$BREW_PREFIX/Caskroom/$cask" ]]; then
         success "Already installed: $cask (cask)"
     else
         run brew install --cask "$cask"
