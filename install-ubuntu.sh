@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-sudo apt install \
+sudo apt install -y \
     fish \
     fzf \
     git \
@@ -16,15 +16,15 @@ ln -si $DIR/.rgrc $HOME/.rgrc
 # fish
 mkdir -p $HOME/.config/fish
 ln -si $DIR/.config/fish/config.fish $HOME/.config/fish/conf.d/myconf.fish 
-mv $HOME/.config/fish/functions $HOME/.config/fish/functions.bak
+[ -d "$HOME/.config/fish/functions" ] && mv "$HOME/.config/fish/functions" "$HOME/.config/fish/functions.bak"
 ln -si $DIR/.config/fish/functions $HOME/.config/fish/functions
 
 # AstroNvim
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
-# git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
+sudo snap install nvim --classic
+[ -d "$HOME/.config/nvim" ] && mv "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
+[ -d "$HOME/.local/share/nvim" ] && mv "$HOME/.local/share/nvim" "$HOME/.local/share/nvim.bak"
+[ -d "$HOME/.local/state/nvim" ] && mv "$HOME/.local/state/nvim" "$HOME/.local/state/nvim.bak"
+[ -d "$HOME/.cache/nvim" ] && mv "$HOME/.cache/nvim" "$HOME/.cache/nvim.bak"
 git clone git@github.com:e9wikner/astronvim-config.git ~/.config/nvim
 
 # lazygit
