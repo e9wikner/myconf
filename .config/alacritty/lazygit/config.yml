@@ -1,0 +1,9 @@
+customCommands:
+  - key: "G"
+    context: "global"
+    description: "Push the current branch to Gerrit for code review"
+    command: "git push origin HEAD:refs/for/{{.CheckedOutBranch.Name}}"
+  - name: "W"
+    context: "global"
+    description: "Push the current branch to Gerrit as a Work In Progress (WIP)"
+    command: "git push origin HEAD:refs/for/{{.CheckedOutBranch.Name}}%wip"
