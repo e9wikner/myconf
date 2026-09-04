@@ -24,3 +24,6 @@ gcc
 make
 nodejs
 tree-sitter
+
+# Fonts
+nerd-fonts-cascadia-code
