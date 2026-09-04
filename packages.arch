@@ -1,0 +1,24 @@
+# Pacman packages for an Arch Linux machine, one package name per line.
+# Lines starting with '#' are comments; blank lines are ignored.
+#
+# hubbabubba reads this file from the cloned myconf during
+# `install.py --tags dev` and installs every name with `pacman --needed`.
+# That means: adding a package here and pushing is enough to get it on the
+# server. Removing one does NOT uninstall it (it may be a dependency of
+# something else) — remove it on the server by hand if it truly bothers you.
+#
+# This list is deliberately a dev-workstation list: shell, editor, tmux, and
+# what AstroNvim needs at runtime. No fonts or terminal emulator — the
+# laptop terminal renders those. Mason installs its own language servers
+# (lua_ls, clangd) at runtime; they are not pacman packages.
+
+fish
+tmux
+
+# AstroNvim runtime
+neovim
+git
+ripgrep
+fzf
+gcc
+make
