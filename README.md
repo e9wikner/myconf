@@ -1,6 +1,6 @@
 # myconf
 
-Personal dotfiles for macOS development — zsh, neovim, tmux, alacritty.
+Personal dotfiles for macOS and Arch Linux development — zsh (macOS), fish (Arch), neovim, tmux.
 
 ## Quick Start
 
@@ -11,6 +11,28 @@ cd ~/Development/myconf
 ```
 
 Requires [Homebrew](https://brew.sh). The script will check for it and print install instructions if missing.
+
+## Arch (hubbabubba)
+
+On the Arch home server, the `e9wikner` account is set up by
+[hubbabubba](https://github.com/e9wikner/hubbabubba)'s ansible
+(`install.py --tags dev`), which clones this repo, installs everything in
+[`packages.arch`](packages.arch) with `pacman --needed`, and then runs
+`./install-arch.sh` as that user.
+
+`install-arch.sh` creates symlinks only — no sudo, no package installs:
+
+| Repo path                   | Target                              |
+|-----------------------------|-------------------------------------|
+| `.config/fish/config.fish`  | `~/.config/fish/conf.d/myconf.fish` |
+| `.config/fish/functions/`   | `~/.config/fish/functions`          |
+| `.tmux.conf`                | `~/.tmux.conf`                      |
+| `.rgrc`                     | `~/.rgrc`                           |
+
+fish is the login shell on the server; there is no alacritty or font install
+(the laptop terminal renders those). Neovim config is cloned over HTTPS from
+[astronvim-config](https://github.com/e9wikner/astronvim-config) into
+`~/.config/nvim`, same as on macOS.
 
 ## What Gets Installed
 
@@ -95,5 +117,5 @@ The following files are kept in the repo for reference but are not used by the m
 
 - `.bash_aliases` — legacy bash git aliases
 - `.vimrc` — legacy vim config (neovim is primary)
-- `.config/fish/` — fish shell config (zsh is primary)
+- `.config/fish/` — fish shell config (zsh on macOS; fish is the login shell on Arch)
 - `README.txt` — original documentation
