@@ -22,3 +22,5 @@ ripgrep
 fzf
 gcc
 make
+nodejs
+tree-sitter

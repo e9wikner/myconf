@@ -65,6 +65,14 @@ fi
 
 BREW_PREFIX="$(brew --prefix)"
 
+# ── Xcode Command Line Tools ───────────────────────────────
+
+if ! command -v gcc &>/dev/null; then
+    error "Xcode Command Line Tools not found. Install with:"
+    error "  xcode-select --install"
+    exit 1
+fi
+
 if $DRY_RUN; then
     info "myconf macOS installer (dry run)"
 else
@@ -77,7 +85,7 @@ echo ""
 
 info "Installing packages..."
 
-packages=(neovim ripgrep fzf tmux lazygit node)
+packages=(neovim tree-sitter ripgrep fzf tmux lazygit node)
 for pkg in "${packages[@]}"; do
     if [[ -d "$BREW_PREFIX/Cellar/$pkg" ]]; then
         success "Already installed: $pkg"
