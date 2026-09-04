@@ -104,6 +104,24 @@ fi
 
 echo ""
 
+# ── AI CLIs ───────────────────────────────────────────────
+
+info "Installing Claude Code and Opencode..."
+
+if command -v claude &>/dev/null; then
+    success "Claude Code already installed"
+else
+    run bash -c "curl -fsSL https://claude.ai/install.sh | bash"
+fi
+
+if command -v opencode &>/dev/null; then
+    success "Opencode already installed"
+else
+    run bash -c "curl -fsSL https://opencode.ai/install | bash"
+fi
+
+echo ""
+
 # ── Done ──────────────────────────────────────────────────
 
 if $DRY_RUN; then
